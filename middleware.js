@@ -7,7 +7,6 @@ export async function middleware(request) {
   // Public API endpoints that don't need session verification
   const isPublicApi =
     path === "/api/iiko/login" ||
-    path === "/api/iiko/debug-env" ||
     path === "/api/iiko/auth/passkey/login/options" ||
     path === "/api/iiko/auth/passkey/login/verify";
 

@@ -1,7 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "The Lokmaco — iiko Warehouse",
+  title: "Pipls — iiko Warehouse",
   description: "Приход, перемещение, поиск товаров",
 };
 

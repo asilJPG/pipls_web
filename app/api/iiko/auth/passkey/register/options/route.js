@@ -10,7 +10,7 @@ export async function POST(request) {
       return Response.json({ error: "Missing user info" }, { status: 400 });
     }
 
-    const rpName = "Lokmaco Admin";
+    const rpName = "Pipls Admin";
     const hostHeader = request.headers.get("x-forwarded-host") || request.headers.get("host") || "";
     const rpID = hostHeader.split(":")[0] || "localhost";
 

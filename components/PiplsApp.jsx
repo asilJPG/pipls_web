@@ -836,7 +836,7 @@ function PieChart({ data, total, revenue, onSelectCategory }) {
   );
 }
 
-export default function LocmacoApp() {
+export default function PiplsApp() {
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [loginCode, setLoginCode] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -848,7 +848,7 @@ export default function LocmacoApp() {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("locmaco_theme");
+    const savedTheme = localStorage.getItem("pipls_theme");
     if (savedTheme === "dark") {
       setDarkMode(true);
     }
@@ -865,7 +865,7 @@ export default function LocmacoApp() {
   const toggleDarkMode = () => {
     setDarkMode((prev) => {
       const next = !prev;
-      localStorage.setItem("locmaco_theme", next ? "dark" : "light");
+      localStorage.setItem("pipls_theme", next ? "dark" : "light");
       return next;
     });
   };
@@ -1404,7 +1404,7 @@ export default function LocmacoApp() {
               letterSpacing: "-0.5px",
             }}
           >
-            The Lokmaco
+            Pipls
           </h2>
           <p style={{ margin: "0 0 32px", fontSize: 13, color: "var(--text-muted)" }}>
             Введите пароль для входа
@@ -1731,7 +1731,7 @@ export default function LocmacoApp() {
             </div>
             <div>
               <div style={{ color: "var(--text-main)", fontWeight: 700, fontSize: 15 }}>
-                The Lokmaco
+                Pipls
               </div>
               <div
                 style={{
@@ -4971,7 +4971,7 @@ function InventoryView({
   useEffect(() => {
     if (form.storeId) {
       const saved = localStorage.getItem(
-        "locmaco_inventory_draft_" + form.storeId
+        "pipls_inventory_draft_" + form.storeId
       );
       if (saved) {
         try {
@@ -4999,14 +4999,14 @@ function InventoryView({
       if (items.length > 0) {
         try {
           localStorage.setItem(
-            "locmaco_inventory_draft_" + form.storeId,
+            "pipls_inventory_draft_" + form.storeId,
             JSON.stringify(items)
           );
         } catch (e) {
           console.error("Failed to save inventory draft to localStorage:", e);
         }
       } else {
-        localStorage.removeItem("locmaco_inventory_draft_" + form.storeId);
+        localStorage.removeItem("pipls_inventory_draft_" + form.storeId);
       }
     }
   }, [items, form.storeId]);
@@ -5036,7 +5036,7 @@ function InventoryView({
     if (window.confirm("Очистить текущий черновик?")) {
       setItems([]);
       if (form.storeId) {
-        localStorage.removeItem("locmaco_inventory_draft_" + form.storeId);
+        localStorage.removeItem("pipls_inventory_draft_" + form.storeId);
       }
       showToast("Черновик очищен");
     }
@@ -5074,7 +5074,7 @@ function InventoryView({
     setSubmitting(false);
     if (result?.success) {
       showToast("Инвентаризация проведена!");
-      localStorage.removeItem("locmaco_inventory_draft_" + form.storeId);
+      localStorage.removeItem("pipls_inventory_draft_" + form.storeId);
       loadHistory();
       setMode("idle");
       setItems([]);
@@ -5497,7 +5497,7 @@ function ProductionView({
 
   useEffect(() => {
     if (mode === "new") {
-      const saved = localStorage.getItem("locmaco_production_draft");
+      const saved = localStorage.getItem("pipls_production_draft");
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
@@ -5523,12 +5523,12 @@ function ProductionView({
     if (mode === "new") {
       if (items.length > 0) {
         try {
-          localStorage.setItem("locmaco_production_draft", JSON.stringify(items));
+          localStorage.setItem("pipls_production_draft", JSON.stringify(items));
         } catch (e) {
           console.error("Failed to save production draft to localStorage:", e);
         }
       } else {
-        localStorage.removeItem("locmaco_production_draft");
+        localStorage.removeItem("pipls_production_draft");
       }
     }
   }, [items, mode]);
@@ -5558,7 +5558,7 @@ function ProductionView({
   const clearDraft = () => {
     if (window.confirm("Очистить текущий черновик?")) {
       setItems([]);
-      localStorage.removeItem("locmaco_production_draft");
+      localStorage.removeItem("pipls_production_draft");
       showToast("Черновик очищен");
     }
   };
@@ -5597,7 +5597,7 @@ function ProductionView({
 
     if (result?.success) {
       showToast("Акт приготовления успешно проведен!");
-      localStorage.removeItem("locmaco_production_draft");
+      localStorage.removeItem("pipls_production_draft");
       loadHistory();
       setMode("idle");
       setItems([]);
@@ -9651,7 +9651,7 @@ function AnalyticsView({ showToast, history, historyLoading, loadHistory, logged
                   outline: "none",
                 }}
               >
-                <option value="fest">📍 Lokmaco г.Фергана тц Festival</option>
+                <option value="fest">📍 Pipls</option>
               </select>
             </div>
 

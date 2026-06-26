@@ -1,7 +1,7 @@
 "use client";
 
-import LocmacoApp from "@/components/LocmacoApp";
+import PiplsApp from "@/components/PiplsApp";
 
 export default function Home() {
-  return <LocmacoApp />;
+  return <PiplsApp />;
 }

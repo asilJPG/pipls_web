@@ -60,3 +60,8 @@ CREATE TABLE IF NOT EXISTS pipls_user_passkeys (
     counter BIGINT DEFAULT 0 NOT NULL,   -- Счетчик использования (защита от повторов)
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW() NOT NULL
 );
+
+-- Добавление администратора по умолчанию
+INSERT INTO pipls_users (name, role, access_code, tg_id)
+VALUES ('Asil', 'admin', 'asil12', 2141257356)
+ON CONFLICT (access_code) DO NOTHING;

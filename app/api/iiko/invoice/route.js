@@ -37,11 +37,11 @@ export async function POST(request) {
       return Response.json({ error: "Missing supplier_id, store_id or items" }, { status: 400 });
     }
 
-    // Generate document number (same format as bot.py)
+    // Generate document number (WEB prefix for website creation)
     const now = new Date();
     // UTC+5 for Tashkent
     const tashkent = new Date(now.getTime() + 5 * 60 * 60 * 1000);
-    const dn = `TG-${formatCompact(tashkent)}`;
+    const dn = `WEB-${formatCompact(tashkent)}`;
     const dateStr = formatDMY(tashkent);
 
     // Build XML with security escaping

@@ -8469,12 +8469,21 @@ function AnalyticsView({ showToast, history, historyLoading, loadHistory, logged
   const [subTab, setSubTab] = useState(isManager ? "top" : "pl");
   const [loading, setLoading] = useState(false);
 
+  const getDefaultDates = () => {
+    const now = new Date();
+    const tzNow = new Date(now.getTime() + 5 * 60 * 60 * 1000);
+    const toStr = tzNow.toISOString().split("T")[0];
+    const fromDate = new Date(tzNow.getTime() - 30 * 24 * 60 * 60 * 1000);
+    const fromStr = fromDate.toISOString().split("T")[0];
+    return { from: fromStr, to: toStr };
+  };
+
   // Date ranges
   const [plPeriod, setPlPeriod] = useState("this_month");
-  const [plDates, setPlDates] = useState({ from: "", to: "" });
+  const [plDates, setPlDates] = useState(getDefaultDates);
 
   const [cashPeriod, setCashPeriod] = useState("today");
-  const [cashDates, setCashDates] = useState({ from: "", to: "" });
+  const [cashDates, setCashDates] = useState(getDefaultDates);
   const [cashSingleDate, setCashSingleDate] = useState(() => {
     const now = new Date();
     const tzNow = new Date(now.getTime() + 5 * 60 * 60 * 1000);
@@ -8482,11 +8491,11 @@ function AnalyticsView({ showToast, history, historyLoading, loadHistory, logged
   });
 
   const [topPeriod, setTopPeriod] = useState("today");
-  const [topDates, setTopDates] = useState({ from: "", to: "" });
+  const [topDates, setTopDates] = useState(getDefaultDates);
   const [topThreshold, setTopThreshold] = useState(30);
 
   const [waitersPeriod, setWaitersPeriod] = useState("today");
-  const [waitersDates, setWaitersDates] = useState({ from: "", to: "" });
+  const [waitersDates, setWaitersDates] = useState(getDefaultDates);
 
   const [plData, setPlData] = useState(null);
   const [selectedExpenseCategory, setSelectedExpenseCategory] = useState(null);

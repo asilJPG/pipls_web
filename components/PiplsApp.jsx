@@ -3382,6 +3382,51 @@ function IncomingView({
   });
   const [items, setItems] = useState([]);
   const [submitting, setSubmitting] = useState(false);
+  const [draftRestored, setDraftRestored] = useState(false);
+
+  useEffect(() => {
+    if (mode === "new") {
+      const saved = localStorage.getItem("pipls_invoice_draft");
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (parsed && parsed.form && Array.isArray(parsed.items) && parsed.items.length > 0) {
+            setForm(parsed.form);
+            setItems(parsed.items);
+            setStep(2);
+            setDraftRestored(true);
+            setTimeout(() => setDraftRestored(false), 3000);
+          }
+        } catch (_e) {}
+      }
+    }
+  }, [mode]);
+
+  useEffect(() => {
+    if (mode === "new") {
+      if (items.length > 0 || form.supplierId || form.storeId || form.comment) {
+        localStorage.setItem(
+          "pipls_invoice_draft",
+          JSON.stringify({ form, items })
+        );
+      } else {
+        localStorage.removeItem("pipls_invoice_draft");
+      }
+    }
+  }, [form, items, mode]);
+
+  const clearDraft = () => {
+    setItems([]);
+    setForm({
+      supplierId: "",
+      supplierName: "",
+      storeId: "",
+      storeName: "",
+      comment: "",
+    });
+    setStep(0);
+    localStorage.removeItem("pipls_invoice_draft");
+  };
 
   const addItem = (p) => {
     setItems((prev) => {
@@ -3449,6 +3494,7 @@ function IncomingView({
       setMode("idle");
       setStep(0);
       setItems([]);
+      localStorage.removeItem("pipls_invoice_draft");
       setForm({
         supplierId: "",
         supplierName: "",
@@ -3648,9 +3694,52 @@ function IncomingView({
 
           {step === 2 && (
             <div>
-              <div style={crumb}>
-                ✅ {form.supplierName} → {form.storeName}
+              <div
+                style={{
+                  ...crumb,
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <span>
+                  ✅ {form.supplierName} → {form.storeName}
+                </span>
+                {items.length > 0 && (
+                  <button
+                    onClick={clearDraft}
+                    style={{
+                      background: "none",
+                      border: "none",
+                      color: "#ef4444",
+                      fontSize: 12,
+                      fontWeight: 600,
+                      cursor: "pointer",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 4,
+                    }}
+                  >
+                    {I.trash} Очистить черновик
+                  </button>
+                )}
               </div>
+              {draftRestored && (
+                <div
+                  style={{
+                    background: "#f0fdf4",
+                    border: "1px solid #bbf7d0",
+                    color: "var(--text-success)",
+                    padding: "10px 14px",
+                    borderRadius: 8,
+                    fontSize: 12,
+                    fontWeight: 500,
+                    marginBottom: 12,
+                  }}
+                >
+                  ✨ Черновик накладной успешно восстановлен!
+                </div>
+              )}
               {loading ? (
                 <LoadingBlock text="Загрузка товаров..." />
               ) : products.length === 0 ? (
@@ -3843,6 +3932,51 @@ function TransferView({
   });
   const [items, setItems] = useState([]);
   const [submitting, setSubmitting] = useState(false);
+  const [draftRestored, setDraftRestored] = useState(false);
+
+  useEffect(() => {
+    if (mode === "new") {
+      const saved = localStorage.getItem("pipls_transfer_draft");
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (parsed && parsed.form && Array.isArray(parsed.items) && parsed.items.length > 0) {
+            setForm(parsed.form);
+            setItems(parsed.items);
+            setStep(2);
+            setDraftRestored(true);
+            setTimeout(() => setDraftRestored(false), 3000);
+          }
+        } catch (_e) {}
+      }
+    }
+  }, [mode]);
+
+  useEffect(() => {
+    if (mode === "new") {
+      if (items.length > 0 || form.fromId || form.toId || form.comment) {
+        localStorage.setItem(
+          "pipls_transfer_draft",
+          JSON.stringify({ form, items })
+        );
+      } else {
+        localStorage.removeItem("pipls_transfer_draft");
+      }
+    }
+  }, [form, items, mode]);
+
+  const clearDraft = () => {
+    setItems([]);
+    setForm({
+      fromId: "",
+      fromName: "",
+      toId: "",
+      toName: "",
+      comment: "",
+    });
+    setStep(0);
+    localStorage.removeItem("pipls_transfer_draft");
+  };
 
   // States for pending transfers workflow
   const [pendingTransfers, setPendingTransfers] = useState({ incoming: [], returned: [], outgoing: [] });
@@ -3979,6 +4113,7 @@ function TransferView({
       setMode("idle");
       setStep(0);
       setItems([]);
+      localStorage.removeItem("pipls_transfer_draft");
       setForm({ fromId: "", fromName: "", toId: "", toName: "", comment: "" });
     } else showToast("Ошибка перемещения", "error");
   };
@@ -4767,14 +4902,51 @@ function TransferView({
                 style={{
                   ...crumb,
                   display: "flex",
+                  justifyContent: "space-between",
                   alignItems: "center",
                   gap: 6,
                 }}
               >
-                ✅ {form.fromName}{" "}
-                <span style={{ color: "#6366f1" }}>{I.arrow}</span>{" "}
-                {form.toName}
+                <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                  ✅ {form.fromName}{" "}
+                  <span style={{ color: "#6366f1" }}>{I.arrow}</span>{" "}
+                  {form.toName}
+                </div>
+                {items.length > 0 && (
+                  <button
+                    onClick={clearDraft}
+                    style={{
+                      background: "none",
+                      border: "none",
+                      color: "#ef4444",
+                      fontSize: 12,
+                      fontWeight: 600,
+                      cursor: "pointer",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 4,
+                    }}
+                  >
+                    {I.trash} Очистить черновик
+                  </button>
+                )}
               </div>
+              {draftRestored && (
+                <div
+                  style={{
+                    background: "#f0fdf4",
+                    border: "1px solid #bbf7d0",
+                    color: "var(--text-success)",
+                    padding: "10px 14px",
+                    borderRadius: 8,
+                    fontSize: 12,
+                    fontWeight: 500,
+                    marginBottom: 12,
+                  }}
+                >
+                  ✨ Черновик перемещения успешно восстановлен!
+                </div>
+              )}
               {loading ? (
                 <LoadingBlock text="Загрузка товаров..." />
               ) : products.length === 0 ? (

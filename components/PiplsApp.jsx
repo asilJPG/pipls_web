@@ -1389,7 +1389,7 @@ export default function PiplsApp() {
               transition: "all 0.25s ease",
             }}
           >
-            L
+            P
           </div>
           <h2
             style={{
@@ -1722,7 +1722,7 @@ export default function PiplsApp() {
                 color: "#fff",
               }}
             >
-              L
+              P
             </div>
             <div>
               <div style={{ color: "var(--text-main)", fontWeight: 700, fontSize: 15 }}>

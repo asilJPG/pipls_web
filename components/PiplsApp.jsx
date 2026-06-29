@@ -1655,7 +1655,6 @@ export default function PiplsApp() {
         }
 
         @keyframes spin { 100% { transform: rotate(360deg); } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes fadeUp { from { opacity: 0; transform: translate(-50%, 10px); } to { opacity: 1; transform: translate(-50%, 0); } }
         @keyframes toastProgress { from { width: 100%; } to { width: 0%; } }
         @keyframes slideLeft { from { transform: translateX(100%); } to { transform: translateX(0); } }
@@ -1724,21 +1723,23 @@ export default function PiplsApp() {
             >
               P
             </div>
-            <div>
-              <div style={{ color: "var(--text-main)", fontWeight: 700, fontSize: 15 }}>
-                Pipls
+            <h1 style={{ margin: 0, padding: 0, display: "contents" }}>
+              <div>
+                <div style={{ color: "var(--text-main)", fontWeight: 700, fontSize: 15 }}>
+                  Pipls
+                </div>
+                <div
+                  style={{
+                    color: "var(--text-muted)",
+                    fontSize: 10,
+                    letterSpacing: 0.6,
+                    textTransform: "uppercase",
+                  }}
+                >
+                  iiko warehouse
+                </div>
               </div>
-              <div
-                style={{
-                  color: "var(--text-muted)",
-                  fontSize: 10,
-                  letterSpacing: 0.6,
-                  textTransform: "uppercase",
-                }}
-              >
-                iiko warehouse
-              </div>
-            </div>
+            </h1>
           </div>
 
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>

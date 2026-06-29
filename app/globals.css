@@ -8,8 +8,9 @@
 
 body {
   font-family: "DM Sans", "Segoe UI", system-ui, sans-serif;
-  background: #f5f7fa;
-  color: #0f1729;
+  background: var(--bg-app, #f5f7fa);
+  color: var(--text-main, #0f1729);
+  transition: background-color 0.25s, color 0.25s;
 }
 
 input,

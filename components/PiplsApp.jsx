@@ -1608,43 +1608,43 @@ export default function PiplsApp() {
     >
       <style>{`
         :root {
-          --bg-app: #f9fafb;
-          --bg-card: #ffffff;
-          --bg-header: #ffffff;
-          --text-main: #111827;
-          --text-muted: #4b5563;
-          --border-color: #e5e7eb;
+          --bg-app: #f8fafc;
+          --bg-card: rgba(255, 255, 255, 0.7);
+          --bg-header: rgba(255, 255, 255, 0.75);
+          --text-main: #0f172a;
+          --text-muted: #64748b;
+          --border-color: rgba(226, 232, 240, 0.7);
           --bg-input: #ffffff;
-          --bg-hover: #f3f4f6;
-          --bg-pill: #f3f4f6;
-          --text-pill: #4b5563;
-          --color-primary: #2563eb;
-          --color-primary-glow: rgba(37, 99, 235, 0.1);
-          --bg-status-success: #d1fae5;
-          --text-status-success: #065f46;
-          --bg-status-neutral: #f3f4f6;
-          --text-status-neutral: #4b5563;
-          --text-success: #166534;
-          --text-danger: #991b1b;
+          --bg-hover: #f1f5f9;
+          --bg-pill: #e2e8f0;
+          --text-pill: #334155;
+          --color-primary: #6366f1; /* Premium Indigo */
+          --color-primary-glow: rgba(99, 102, 241, 0.15);
+          --bg-status-success: rgba(16, 185, 129, 0.12);
+          --text-status-success: #059669;
+          --bg-status-neutral: #f1f5f9;
+          --text-status-neutral: #475569;
+          --text-success: #15803d;
+          --text-danger: #b91c1c;
         }
 
         .dark-theme {
-          --bg-app: #09090b;
-          --bg-card: #18181b;
-          --bg-header: #18181b;
-          --text-main: #ffffff;
-          --text-muted: #a1a1aa;
-          --border-color: #27272a;
-          --bg-input: #18181b;
-          --bg-hover: #27272a;
-          --bg-pill: #27272a;
-          --text-pill: #ffffff;
-          --color-primary: #3b82f6;
-          --color-primary-glow: rgba(59, 130, 246, 0.15);
-          --bg-status-success: rgba(16, 185, 129, 0.15);
+          --bg-app: #030712; /* Rich Space Dark */
+          --bg-card: rgba(17, 24, 39, 0.7);
+          --bg-header: rgba(17, 24, 39, 0.75);
+          --text-main: #f9fafb;
+          --text-muted: #9ca3af;
+          --border-color: rgba(31, 41, 55, 0.7);
+          --bg-input: #111827;
+          --bg-hover: #1f2937;
+          --bg-pill: #374151;
+          --text-pill: #f3f4f6;
+          --color-primary: #818cf8;
+          --color-primary-glow: rgba(129, 140, 248, 0.2);
+          --bg-status-success: rgba(52, 211, 153, 0.15);
           --text-status-success: #34d399;
-          --bg-status-neutral: #27272a;
-          --text-status-neutral: #cbd5e1;
+          --bg-status-neutral: #1f2937;
+          --text-status-neutral: #d1d5db;
           --text-success: #34d399;
           --text-danger: #f87171;
         }
@@ -1692,6 +1692,8 @@ export default function PiplsApp() {
           position: "sticky",
           top: 0,
           zIndex: 100,
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
         }}
       >
         <div
